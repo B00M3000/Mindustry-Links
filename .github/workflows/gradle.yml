@@ -3,7 +3,7 @@ name: Java CI
 on: [push]
 
 jobs:
-  buildJar:
+  Build Jar with Gradle:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +22,9 @@ jobs:
       with:
         name: ${{ github.event.repository.name }}
         path: build/libs/${{ github.event.repository.name }}.jar
+  Create Release and Upload Build:
+    runs-on: ubuntu-latest
+    steps:
     - name: Create a Release
       uses: actions/create-release@v1
       id: create_release
@@ -41,4 +44,3 @@ jobs:
         asset_path: build/libs/${{ github.event.repository.name }}.jar
         asset_name: ${{ github.event.repository.name }}
         asset_content_type: application/java-archive
-        
