@@ -2,9 +2,6 @@ name: Java CI
 
 on: [push]
 
-jobs.strategy:
-  max-parrallel: 1
-
 jobs:    
   Build Release:
     runs-on: ubuntu-latest
