@@ -1,5 +1,5 @@
 name: "example-java-mod"
-displayName: "Example Java Mod"
+displayName: "Mindustry Links"
 author: "Anuke"
 main: "example.ExampleJavaMod"
 description: "A jar mod."
