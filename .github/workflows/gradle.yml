@@ -3,7 +3,7 @@ name: Java CI
 on: [push]
 
 jobs:    
-  Build Release:
+  Build_Release:
     runs-on: ubuntu-latest
 
     steps:
