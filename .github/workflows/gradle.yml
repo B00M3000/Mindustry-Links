@@ -22,14 +22,19 @@ jobs:
       with:
         name: ${{ github.event.repository.name }}
         path: build/libs/${{ github.event.repository.name }}.jar
+    - name: Generate a Release Tag
+      uses: ChloePlanet/github-tag-action@2.0.0
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id: gen
     - name: Create a Release
       uses: actions/create-release@v1
       id: create_release
       with:
         draft: false
         prerelease: false
-        release_name: ${{ steps.version.outputs.version }}
-        tag_name: ${{ github.sha }}
+        release_name: ${{ github.sha }}
+        tag_name: ${{ steps.gen.outputs.new_tag }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Upload Artifact to Release
