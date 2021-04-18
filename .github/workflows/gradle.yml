@@ -1,11 +1,7 @@
 name: Java CI
 
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Name of version (ie 5.5.0)'
-        required: true
+on: [push]
+
 jobs:    
   Build_Release:
     runs-on: ubuntu-latest
