@@ -22,6 +22,12 @@ jobs:
       with:
         name: ${{ github.event.repository.name }}
         path: build/libs/${{ github.event.repository.name }}.jar
+    - name: Retrive and Declare Hash and Branch Variables
+      id: vars
+      shell: bash
+      run: |
+        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        echo "::set-output name=hash::$(git rev-parse --short HEAD)"
     - name: Create a Release
       uses: actions/create-release@v1
       id: create_release
@@ -29,7 +35,7 @@ jobs:
         draft: false
         prerelease: false
         release_name: ${{ steps.version.outputs.version }}
-        tag_name: ${{ GITHUB_SHA }}
+        tag_name: ${{ steps.vars.output.hash }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Upload Artifact to Release
